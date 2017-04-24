@@ -91,6 +91,55 @@ const classNames = ReactStyleSheets.createUniqueClassStyles({
   }
 });
 
+
+// BROKEN
+function Item({item}) {
+  return (
+    <li
+      key={item.name}
+      className={[classNames.listItem, classNames.listItem2].join(' ')}
+      style={{color: item.color}}
+    >
+      {item.name}
+    </li>
+  );
+}
+
+// ALSO BROKEN
+// class Item extends Component {
+//   render() {
+//     var item = this.props.item;
+
+//     return (
+//       <li
+//         key={item.name}
+//         className={[classNames.listItem, classNames.listItem2].join(' ')}
+//         style={{color: item.color}}
+//       >
+//         {item.name}
+//       </li>
+//     );
+//   }
+// }
+
+
+// WORKING
+// function Item(props) {
+//   return (
+//     <li
+//       onMouseDown={props.onMouseDown}
+//       onTouchStart={props.onTouchStart}
+//       className={[classNames.listItem, classNames.listItem2, props.className].join(' ')}
+//       style={Object.assign({}, props.style, {color: props.item.color})}
+//       data-placeholder={props['data-placeholder']}
+//       data-dragged={props['data-dragged']}
+//     >
+//       {props.item.name}
+//     </li>
+//   );
+// }
+
+
 class Main extends Component {
   constructor () {
     super();
@@ -250,15 +299,7 @@ class Main extends Component {
         >
           {
             this.state.list.map(function (item) {
-              return (
-                <li
-                  key={item.name}
-                  className={[classNames.listItem, classNames.listItem2].join(' ')}
-                  style={{color: item.color}}
-                >
-                  {item.name}
-                </li>
-              );
+              return <Item key={item.name} item={item} />;
             }.bind(this)).toArray()
           }
         </Reorder>
