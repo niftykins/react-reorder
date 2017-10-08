@@ -143,9 +143,13 @@
       reorderComponents[draggedId].setDragState(getState());
     }
 
-    function triggerGroup () {
-      for (var reorderId in reorderGroups[activeGroup]) {
+    function triggerGroup (reorderId) {
+      if (reorderId) {
         reorderGroups[activeGroup][reorderId].setDragState(getState());
+      } else {
+        for (var reorderId in reorderGroups[activeGroup]) {
+          reorderGroups[activeGroup][reorderId].setDragState(getState());
+        }
       }
     }
 
@@ -278,7 +282,7 @@
           placedId = reorderId;
           placedIndex = index;
 
-          triggerGroup();
+          triggerGroup(reorderId);
         }
       } else if (typeof draggedId !== 'undefined' && reorderId === draggedId) {
         placedIndex = index;
@@ -294,7 +298,7 @@
         if (reorderGroup === activeGroup) {
           draggedStyle = style;
 
-          triggerGroup();
+          triggerGroup(reorderId);
         }
       } else if (typeof draggedId !== 'undefined' && reorderId === draggedId) {
         draggedStyle = style;

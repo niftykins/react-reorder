@@ -29,6 +29,10 @@ export class Kanban extends Component {
         })
       )
     };
+
+    setTimeout(() => {
+      for (let i = 0; i < 75; i++) this.addList();
+    }, 50);
   }
 
   addList () {

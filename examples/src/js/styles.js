@@ -129,9 +129,6 @@ export const classNames = ReactStyleSheets.createUniqueClassStyles({
     width: '100%'
   },
   kanban: {
-    overflowY: 'auto',
-    height: 300,
-    whiteSpace: 'nowrap'
   },
   kanbanListOuter: {
     width: 200,
