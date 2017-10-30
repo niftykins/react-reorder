@@ -118,7 +118,6 @@ export class Kanban extends Component {
                 <Reorder
                   reorderId={list.get('id')}
                   reorderGroup="kanban"
-                  component={Wrapper}
                   className={[classNames.myList, classNames.kanbanListInner].join(' ')}
                   placeholderClassName={[classNames.placeholder, classNames.customPlaceholder].join(' ')}
                   draggedClassName={classNames.dragged}

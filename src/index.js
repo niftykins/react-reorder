@@ -362,9 +362,9 @@
     return Reorder;
   }
 
-  function getReorderComponent (React, ReactDOM, assign) {
+  function getReorderComponent (React, ReactDOM, assign, createReactClass) {
 
-    var Reorder = React.createClass({
+    var Reorder = createReactClass({
       displayName: 'Reorder',
 
       getInitialState: function () {
@@ -700,26 +700,26 @@
 
     });
 
-    var PropTypes = React.PropTypes;
+    // var PropTypes = React.PropTypes;
 
-    Reorder.propTypes = {
-      component: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-      getRef: PropTypes.func,
-      reorderId: PropTypes.string,
-      reorderGroup: PropTypes.string,
-      placeholderClassName: PropTypes.string,
-      draggedClassName: PropTypes.string,
-      lock: PropTypes.string,
-      holdTime: PropTypes.number,
-      touchHoldTime: PropTypes.number,
-      mouseHoldTime: PropTypes.number,
-      onReorder: PropTypes.func,
-      placeholder: PropTypes.element,
-      autoScroll: PropTypes.bool,
-      autoScrollParents: PropTypes.bool,
-      disabled: PropTypes.bool,
-      disableContextMenus: PropTypes.bool
-    };
+    // Reorder.propTypes = {
+    //   component: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+    //   getRef: PropTypes.func,
+    //   reorderId: PropTypes.string,
+    //   reorderGroup: PropTypes.string,
+    //   placeholderClassName: PropTypes.string,
+    //   draggedClassName: PropTypes.string,
+    //   lock: PropTypes.string,
+    //   holdTime: PropTypes.number,
+    //   touchHoldTime: PropTypes.number,
+    //   mouseHoldTime: PropTypes.number,
+    //   onReorder: PropTypes.func,
+    //   placeholder: PropTypes.element,
+    //   autoScroll: PropTypes.bool,
+    //   autoScrollParents: PropTypes.bool,
+    //   disabled: PropTypes.bool,
+    //   disableContextMenus: PropTypes.bool
+    // };
 
     Reorder.defaultProps = {
       component: 'div',
@@ -751,11 +751,12 @@
     var React = require('react'); // eslint-disable-line no-undef
     var ReactDOM = require('react-dom'); // eslint-disable-line no-undef
     var assign = require('lodash.assign'); // eslint-disable-line no-undef
-    module.exports = withReorderMethods(getReorderComponent(React, ReactDOM, assign)); // eslint-disable-line no-undef
+    var createReactClass = require('create-react-class'); // eslint-disable-line no-undef
+    module.exports = withReorderMethods(getReorderComponent(React, ReactDOM, assign, createReactClass)); // eslint-disable-line no-undef
   // Export for amd / require
   } else if (typeof define === 'function' && define.amd) { // eslint-disable-line no-undef
-    define(['react', 'react-dom', 'lodash.assign'], function (ReactAMD, ReactDOMAMD, assignAMD) { // eslint-disable-line no-undef
-      return withReorderMethods(getReorderComponent(ReactAMD, ReactDOMAMD, assignAMD));
+    define(['react', 'react-dom', 'lodash.assign', 'create-react-class'], function (ReactAMD, ReactDOMAMD, assignAMD, createReactClassAMD) { // eslint-disable-line no-undef
+      return withReorderMethods(getReorderComponent(ReactAMD, ReactDOMAMD, assignAMD, createReactClassAMD));
     });
   // Export globally
   } else {
@@ -771,7 +772,7 @@
       root = this;
     }
 
-    root.Reorder = withReorderMethods(getReorderComponent(root.React, root.ReactDOM, root.assign));
+    root.Reorder = withReorderMethods(getReorderComponent(root.React, root.ReactDOM, root.assign, root.createReactClass));
   }
 
 })();
