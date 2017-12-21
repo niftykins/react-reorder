@@ -88,6 +88,10 @@ export class Kanban extends Component {
     }
   }
 
+  onClick () {
+    alert('clicked');
+  }
+
   render () {
     return (
       <div className={classNames.clearfix}>
@@ -124,6 +128,7 @@ export class Kanban extends Component {
                     list.get('items').map((item, itemIndex) => (
                       <li
                         key={item.get('name')}
+                        onClick={this.onClick}
                         className={[classNames.listItem, classNames.kanbanItem].join(' ')}
                       >
                         <div className={classNames.contentHolder}>
